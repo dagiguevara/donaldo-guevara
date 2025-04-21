@@ -23,6 +23,8 @@ services:
       SPRING_PROFILES_ACTIVE: docker
     networks:
       - testnet
+    volumes:
+      - ./build/reports/allure-report:/app/build/reports/allure-report
 
 networks:
   testnet:
