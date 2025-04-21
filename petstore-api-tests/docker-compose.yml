@@ -24,7 +24,7 @@ services:
     networks:
       - testnet
     volumes:
-      - ./build/reports/allure-report:/app/build/reports/allure-report
+      - ./build/allure-results:/app/build/allure-results
 
 networks:
   testnet:
