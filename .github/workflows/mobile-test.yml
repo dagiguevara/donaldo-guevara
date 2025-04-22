@@ -8,7 +8,7 @@ on:
 
 jobs:
   mobile-tests:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -40,13 +40,18 @@ jobs:
           profile: pixel_5
           script: echo "Emulator started"
 
-      - name: Run Appium Tests
-        working-directory: monefy-mobile-tests
+      - name: Install Appium
+        run: npm install -g appium
+
+      - name: Start Appium Server
         run: |
-          npm install -g appium
-          appium --log-level info &
-          sleep 10
-          ./gradlew test -Dspring.profiles.active=ci
+          nohup appium --log-level info > appium.log 2>&1 &
+          sleep 15
+        shell: bash
+
+      - name: Run Mobile Tests
+        run: ./gradlew test -Dspring.profiles.active=ci
+        working-directory: monefy-mobile-tests
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
