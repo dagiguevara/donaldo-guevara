@@ -8,20 +8,11 @@ on:
 
 jobs:
   mobile-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: temurin
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
 
       - name: Grant permission to gradlew
         run: chmod +x ./gradlew
@@ -31,20 +22,22 @@ jobs:
         run: ./gradlew spotlessCheck
         working-directory: monefy-mobile-tests
 
-      - name: Start Android Emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: google_apis
-          arch: x86_64
-          profile: pixel_5
-          script: echo "Emulator started"
+      - name: Start Android Emulator on macOS
+        run: |
+          echo "Starting emulator..."
+          $ANDROID_HOME/emulator/emulator -avd Pixel_5_API_30 -no-snapshot -no-audio -no-boot-anim -netdelay none -netspeed full > /dev/null 2>&1 &
+          
+          echo "Waiting for emulator to boot..."
+          until [[ "$($ANDROID_HOME/platform-tools/adb shell getprop sys.boot_completed | tr -d '\r')" == "1" ]]; do
+            sleep 5
+          done
 
-      - name: Install Appium
-        run: npm install -g appium
+          echo "Emulator is ready!"
+        shell: bash
 
       - name: Start Appium Server
         run: |
+          echo "Starting Appium..."
           nohup appium --log-level info > appium.log 2>&1 &
           sleep 15
         shell: bash
