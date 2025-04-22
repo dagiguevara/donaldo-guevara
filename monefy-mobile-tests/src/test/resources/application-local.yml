@@ -1,0 +1,9 @@
+appium:
+  platformName: "Android"
+  deviceName: "Pixel_9_Pro"
+  automationName: "UiAutomator2"
+  app: "classpath:monefy.apk"
+  appPackage: "com.monefy.app.lite"
+  appActivity: "com.monefy.activities.main.MainActivity_"
+  noReset: false
+  serverUrl: "http://0.0.0.0:4723"
