@@ -31,19 +31,22 @@ jobs:
         run: ./gradlew spotlessCheck
         working-directory: monefy-mobile-tests
 
-      - name: Start Android Emulator and Run Appium Tests
+      - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           target: google_apis
           arch: x86_64
           profile: pixel_5
-          working-directory: monefy-mobile-tests
-          script: |
-            npm install -g appium
-            appium --log-level info --base-path /wd/hub &
-            sleep 10
-            ./gradlew test -Dspring.profiles.active=ci
+          script: echo "Emulator started"
+
+      - name: Run Appium Tests
+        working-directory: monefy-mobile-tests
+        run: |
+          npm install -g appium
+          appium --log-level info &
+          sleep 10
+          ./gradlew test -Dspring.profiles.active=ci
 
       - name: Generate Allure Report
         run: ./gradlew allureReport
