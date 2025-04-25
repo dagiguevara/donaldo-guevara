@@ -47,10 +47,15 @@ jobs:
         run: docker compose down -v --remove-orphans
         working-directory: petstore-api-tests
 
-      - name: Deploy Allure Report to GitHub Pages
+      - name: Copy Allure Report to publish folder
+        run: |
+          mkdir -p public/api
+          cp -r petstore-api-tests/build/reports/allure-report/* public/api/
+
+      - name: Deploy API Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: petstore-api-tests/build/reports/allure-report
+          publish_dir: public
           publish_branch: gh-pages
-          keep_files: true
+          force_orphan: false
