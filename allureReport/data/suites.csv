@@ -1,6 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Fri Apr 25 15:09:24 CEST 2025","Fri Apr 25 15:09:47 CEST 2025","22726","","com.monefy.automation.tests.SearchTest","","com.monefy.automation.tests.SearchTest","testSearchRecord","testSearchRecord(String) Search with input: Eating out",""
-"passed","Fri Apr 25 15:07:57 CEST 2025","Fri Apr 25 15:08:44 CEST 2025","46641","","com.monefy.automation.tests.ExpenseTest","","com.monefy.automation.tests.ExpenseTest","testExpenseCreation","Test Expense Creation",""
-"passed","Fri Apr 25 15:08:44 CEST 2025","Fri Apr 25 15:09:03 CEST 2025","18689","","com.monefy.automation.tests.IncomeTest","","com.monefy.automation.tests.IncomeTest","testIncomeCreation","Test Income Creation",""
-"passed","Fri Apr 25 15:09:47 CEST 2025","Fri Apr 25 15:10:09 CEST 2025","21957","","com.monefy.automation.tests.SearchTest","","com.monefy.automation.tests.SearchTest","testSearchRecord","testSearchRecord(String) Search with input: 20",""
-"passed","Fri Apr 25 15:09:03 CEST 2025","Fri Apr 25 15:09:24 CEST 2025","20997","","com.monefy.automation.tests.SearchTest","","com.monefy.automation.tests.SearchTest","testSearchRecord","testSearchRecord(String) Search with input: Dinner",""
