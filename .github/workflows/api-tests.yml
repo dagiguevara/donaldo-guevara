@@ -53,5 +53,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: petstore-api-tests/build/reports/allure-report
           publish_branch: gh-pages
-          destination_dir: petstore-api-tests
           keep_files: true
