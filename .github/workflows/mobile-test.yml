@@ -55,3 +55,12 @@ jobs:
         with:
           name: allure-report
           path: monefy-mobile-tests/build/reports/allure-report
+
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: monefy-mobile-tests/build/reports/allure-report
+          publish_branch: gh-pages
+          destination_dir: monefy-mobile-tests
+          keep_files: true
